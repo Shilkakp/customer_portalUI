@@ -1,0 +1,33 @@
+.registration-container {
+  width: 300px;
+  margin: 0 auto;
+  border: 10px solid #ccc;
+  padding:20px;
+  border-radius: 5ppx;
+}
+ 
+.form-group {
+  margin-bottom: 20px;
+}
+ 
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+ 
+.form-group input {
+  width: 100%;
+  padding: 4px;
+  font-size: 14px;
+}
+ 
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: blue;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
