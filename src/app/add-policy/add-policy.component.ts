@@ -15,7 +15,7 @@ export class AddPolicyComponent {
 constructor(private AddPolicyService: CpService,private router:Router) { }
 
  AddPolicy() {
-  this.AddPolicyService.AddPolicy(this.policyNumber,this.chasisNumber).subscribe(() => {
+  this.AddPolicyService.AddPolicy({policyNumber:this.policyNumber,chasisNumber:this.chasisNumber}).subscribe(() => {
     this.router.navigate(['/policylogin']);
   },
   error =>{

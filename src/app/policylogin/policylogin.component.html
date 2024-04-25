@@ -1,154 +1,96 @@
 <body>
   <div class="policylogin-container"></div>
   <div style="text-align: center;">
-      <h1><u>POLICY SCREEN</u></h1>
+    <h1><u>POLICY SCREEN</u></h1>
   </div>
   <button type="button" (click)="logout()" style="float: right;">Logout</button>
   <br><br><br>
   <button class="raised-button" style="float: right;" (click)="AddPolicy()">Add Policy</button>
   <h2>
-      <p style="float:left">&nbsp;&nbsp;Welcome, {{ appuser.UserName }}!</p>
+    <p style="float:left">&nbsp;&nbsp;Welcome, {{ appuser.UserName }}!</p>
   </h2>
-  <br>
-  <br>
+  <br><br>
   <div class="split-left">
-      <div class="form-group">
-          <select name="Policy List" (change)="onPolicySelect($event)">
-              <option value="Policy List">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Policy List</b> &nbsp;&nbsp;&nbsp;&nbsp;
-              </option>
-              <option *ngFor="let policy of policies" [value]="policy.policyNumber"
-                  [selected]="policy === selectedPolicy">{{
-                  policy.policyNumber }}</option>
-          </select>
-          <div *ngIf="selectedPolicy">
-
-          </div>
-          <div *ngIf="!selectedPolicy && policies.length === 0">
-              <!--<p>Kindly add your policy to view details.</p>-->
-          </div>
-          <div>
-              <button class="raised-button" style="float: right;" (click)="RemovePolicy()">Remove
-                  Policy</button>&nbsp; &nbsp;
-              &nbsp;
-          </div>
+    <div class="form-group">
+      <select name="Policy List" [(ngModel)]="selectedPolicy" (change)="onPolicySelect($event)">
+        <option value="Policy List">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Policy List</b>&nbsp;&nbsp;&nbsp;&nbsp;</option>
+        <option *ngFor="let policy of policies" [value]="policy.policyNumber">{{
+          policy.policyNumber }}</option>
+      </select>
+      <div *ngIf="selectedPolicy"></div>
+      <div *ngIf="!selectedPolicy && policies.length === 0"></div>
+      <div>
+        <button class="raised-button" style="float: right;" (click)="RemovePolicy()">Remove Policy</button>&nbsp; &nbsp;
+        &nbsp;
       </div>
-      <div class="mat-tab-group">
-          <button class="mat-tab-big" (click)="PolicyHolderComponent()">Policy Holder Details</button>
-          <button class="mat-tab-big" (click)="PolicyDetailsComponent()">Policy Details</button>
-          <button class="mat-tab-big" (click)="CoverageDetailsComponent()">Coverage Details</button>
-          <button class="mat-tab-big" (click)="VehicleDetailsComponent()">Vehicle Details</button>
-      </div>
+    </div>
+    <div class="mat-tab-group">
+      <button class="mat-tab-big" (click)="PolicyHolderComponent()">Policy Holder Details</button>
+      <button class="mat-tab-big" (click)="PolicyDetailsComponent()">Policy Details</button>
+      <button class="mat-tab-big" (click)="CoverageDetailsComponent()">Coverage Details</button>
+      <button class="mat-tab-big" (click)="VehicleDetailsComponent()">Vehicle Details</button>
+    </div>
   </div>
   <br>
   <!-- Add Policy -->
   <div *ngIf="showAddPolicyForm" class="add-policy-form" style="float: right;">
-      <label for="policyNumber"><b>Policy Number:</b></label>
-      <input type="text" id="policyNumber" [(ngModel)]="policyNumber">&nbsp; &nbsp; &nbsp;
-      <br>
-      <br>
-      <label for="chasisNumber"><b>Chasis Number:</b></label>
-      <input type="text" id="chasisNumber" [(ngModel)]="chasisNumber">&nbsp; &nbsp;
-      <br>
-      <br>
-      &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; <button (click)="onSubmit()">Submit</button>
+    <label for="policyNumber"><b>Policy Number:</b></label>
+    <input type="text" id="policyNumber" [(ngModel)]="policyinput.policyNumber">&nbsp; &nbsp; &nbsp; <br> <br>
+    <label for="chasisNumber"><b>Chasis Number:</b></label>
+    <input type="text" id="chasisNumber" [(ngModel)]="policyinput.chasisNumber">&nbsp; &nbsp; <br> <br>
+    &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; <button (click)="onSubmit()">Submit</button>
   </div>
-
   <div *ngIf="policyDetailsflag">
-      <div style="float: left-corner;">
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <p>Policy Number: {{ policyDetails.policyNumber }}</p>
-          <p>Policy Effective Date: {{ policyDetails.policyEffectiveDt }}</p>
-          <p>Policy Expiration Date: {{ policyDetails.policyExpirationDt }}</p>
-          <p>Status: {{ policyDetails.status }}</p>
-          <p>Total Premium: {{ policyDetails.totalPremium }}</p>
-          <p>Pay Plan: {{ policyDetails.payPlan }}</p>
-      </div>
-      <br>
-      <div>
-          <p>{{ errorMessage }}</p>
-      </div>
+    <div style="float: left-corner;">
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <p>Policy Number: {{ policyDetails.policyNumber }}</p>
+      <p>Policy Effective Date: {{ policyDetails.policyEffectiveDt }}</p>
+      <p>Policy Expiration Date: {{ policyDetails.policyExpirationDt }}</p>
+      <p>Status: {{ policyDetails.status }}</p>
+      <p>Total Premium: {{ policyDetails.totalPremium }}</p>
+      <p>Pay Plan: {{ policyDetails.payPlan }}</p>
+    </div>
+    <br>
+    <div>
+      <p>{{ errorMessage }}</p>
+    </div>
   </div>
-
-
   <div *ngIf="policyHolderflag">
-      <div style="float: left-corner;">
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <p>First Name: {{ policyHolder.firstName }}</p>
-          <p>Last Name: {{ policyHolder.lastName }}</p>
-          <p>AddressLine1: {{ policyHolder.addressLine1 }}</p>
-          <p>AddressLine2:{{ policyHolder.addressLine2 }}</p>
-          <p>city:{{ policyHolder.city }}</p>
-          <p>State:{{ policyHolder.state }}</p>
-          <p>PINCode:{{ policyHolder.pinCode }}</p>
-          <p>Mobile No: {{ policyHolder.mobileNo }}</p>
-          <p>Email: {{ policyHolder.email }}</p>
-      </div>
+    <div style="float: left-corner;">
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <p>First Name: {{ policyHolder.firstName }}</p>
+      <p>Last Name: {{ policyHolder.lastName }}</p>
+      <p>AddressLine1: {{ policyHolder.addressLine1 }}</p>
+      <p>AddressLine2:{{ policyHolder.addressLine2 }}</p>
+      <p>city:{{ policyHolder.city }}</p>
+      <p>State:{{ policyHolder.state }}</p>
+      <p>PINCode:{{ policyHolder.pinCode }}</p>
+      <p>Mobile No: {{ policyHolder.mobileNo }}</p>
+      <p>Email: {{ policyHolder.email }}</p>
+    </div>
   </div>
-
-
-
   <div *ngIf="coverageflag">
-      <p> Description:{{coverageDetail.description}}</p>
+    <p> Description:{{coverageDetail.description}}</p>
   </div>
   <div *ngIf="errorMessage">
-      <p>{{ errorMessage }}</p>
+    <p>{{ errorMessage }}</p>
   </div>
-
-
-
-  <div>
-      <div style="float: left-corner;">
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <p>Date of Purchase:{{ vehicleDetails.dateOfPurchase }}</p>
-          <p>Brand: {{ vehicleDetails.brand }}</p>
-          <p>Model: {{ vehicleDetails.modelname }}</p>
-          <p>Variant: {{ vehicleDetails.variant }}</p>
-          <p>Body Type: {{ vehicleDetails.bodyType }}</p>
-          <p>Fuel Type: {{ vehicleDetails.fuelType }}</p>
-          <p>RTO: {{ vehicleDetails.rtoName }}</p>
-          <p>Registration Number: {{ vehicleDetails.registrationNumber }}</p>
-          <p>Chasis Number:{{ vehicleDetails.chasisNumber }}</p>
-          <p>Engine Number: {{ vehicleDetails.engineNumber }}</p>
-          <p>Year of Manufacture: {{ vehicleDetails.yearOfManufacture }}</p>
-          <p>IDV: {{ vehicleDetails.idv }}</p>
-          <p>Ex-showroom Price: {{ vehicleDetails.exShowroomPrice }}</p>
-      </div>
+  <div *ngIf="vehicleflag">
+    <div style="float: left-corner;">
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <p>Date of Purchase:{{ vehicleDetails.dateOfPurchase }}</p>
+      <p>Brand: {{ vehicleDetails.brand }}</p>
+      <p>Model: {{ vehicleDetails.modelname }}</p>
+      <p>Variant: {{ vehicleDetails.variant }}</p>
+      <p>Body Type: {{ vehicleDetails.bodyType }}</p>
+      <p>Fuel Type: {{ vehicleDetails.fuelType }}</p>
+      <p>RTO: {{ vehicleDetails.rtoName }}</p>
+      <p>Registration Number: {{ vehicleDetails.registrationNumber }}</p>
+      <p>Chasis Number:{{ vehicleDetails.chasisNumber }}</p>
+      <p>Engine Number: {{ vehicleDetails.engineNumber }}</p>
+      <p>Year of Manufacture: {{ vehicleDetails.yearOfManufacture }}</p>
+      <p>IDV: {{ vehicleDetails.idv }}</p>
+      <p>Ex-showroom Price: {{ vehicleDetails.exShowroomPrice }}</p>
+    </div>
   </div>
 </body>

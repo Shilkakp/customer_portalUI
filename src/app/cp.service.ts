@@ -43,12 +43,12 @@ return this.http.post<Appuser>("https://localhost:7148/api/Appuser/Adduser", sen
       }
      
      // Add Policy
-     AddPolicy(policyNumber:any,chasisNumber:any): Observable<any> {
+     AddPolicy(userpolicylist:any): Observable<any> {
       debugger
       const sentData= {
         userId:localStorage.getItem("userid"),
-        PolicyNumber: policyNumber,
-        ChasisNumber: chasisNumber,
+        policyNumber: userpolicylist.policyNumber,
+        chasisNumber: userpolicylist.chasisNumber,
       }
   return this.http.post<Appuser>("https://localhost:7148/api/Appuser/AddPolicy",sentData );
     }

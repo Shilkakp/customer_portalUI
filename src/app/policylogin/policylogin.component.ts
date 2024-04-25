@@ -4,7 +4,7 @@ import { LoginComponent } from '../login/login.component';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-policylogin',
@@ -18,7 +18,6 @@ export class PolicyloginComponent implements OnInit {
   showAddPolicyForm: boolean = false;
   policyinput: any = { policyNumber: '', chasisNumber: '' };
   policyNumber: string ='';
-  chasisNumber:string='';
   policyDetails: any;
   errorMessage: string='';
   policyDetailsflag:boolean=false;
@@ -50,10 +49,10 @@ export class PolicyloginComponent implements OnInit {
       (policies: any[]) => {
         console.log(policies)
         this.policies = policies;
-        if (this.policies.length>0){
-          this.selectedPolicy=this.policies[0];
+       // if (this.policies.length>0){
+        //  this.selectedPolicy=this.policies[0];
           
-        }
+       // }
       },
       (error: any) => {
         console.error('Error fetching policies:', error);
@@ -108,7 +107,7 @@ export class PolicyloginComponent implements OnInit {
 
   PolicyHolderComponent() {
 
-    this.http.get<any>(`https://localhost:7148/api/Appuser/PolicyHolder?PolicyNumber=${this.selectedPolicy.policyNumber}`).subscribe(
+    this.http.get<any>(`https://localhost:7148/api/Appuser/PolicyHolder?PolicyNumber=${this.selectedPolicy}`).subscribe(
       (data) => {
         this.policyHolder = data;
         this.errorMessage = '';
@@ -127,8 +126,9 @@ export class PolicyloginComponent implements OnInit {
  
 
 
-  PolicyDetailsComponent() {debugger
-    this.http.get<any>(`https://localhost:7148/api/Appuser/PolicyDetails?policyNumber=${this.selectedPolicy.policyNumber}`).subscribe(
+  PolicyDetailsComponent() {
+    debugger
+    this.http.get<any>(`https://localhost:7148/api/Appuser/PolicyDetails?policyNumber=${this.selectedPolicy}`).subscribe(
       (data) => {
         this.policyDetails = data;
         this.errorMessage = '';
@@ -148,7 +148,7 @@ export class PolicyloginComponent implements OnInit {
 
   CoverageDetailsComponent(){
   debugger
-    this.http.get<any>(`https://localhost:7148/api/Appuser/GetCoverages?PolicyNumber=${this.selectedPolicy.policyNumber}`).subscribe(
+    this.http.get<any>(`https://localhost:7148/api/Appuser/GetCoverages?PolicyNumber=${this.selectedPolicy}`).subscribe(
       (data) => {
         this.coverageDetail = data;
         this.errorMessage = '';
@@ -168,7 +168,7 @@ export class PolicyloginComponent implements OnInit {
 
   VehicleDetailsComponent() {
     debugger
-    this.http.get<any>(`https://localhost:7148/api/Appuser/VehicleDetails?policyNumber=${this.selectedPolicy.policyNumber}`).subscribe(
+    this.http.get<any>(`https://localhost:7148/api/Appuser/VehicleDetails?policyNumber=${this.selectedPolicy}`).subscribe(
       (data) => {
         this.vehicleDetails = data;
         this.errorMessage = ''; 
@@ -188,7 +188,7 @@ export class PolicyloginComponent implements OnInit {
 
   onSubmit() {
     debugger;
-    this.cpService.AddPolicy(this.policyNumber,this.chasisNumber)
+    this.cpService.AddPolicy(this.policyinput)
        .subscribe(
         (response) => { 
           console.log(response)
