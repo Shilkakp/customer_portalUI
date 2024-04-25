@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
@@ -5,6 +6,8 @@ import { Component } from '@angular/core';
   templateUrl: './policy-details.component.html',
   styleUrls: ['./policy-details.component.css']
 })
-export class PolicyDetailsComponent {
 
-}
+  export class PolicyDetailsComponent {
+    
+    }
+  

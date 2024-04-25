@@ -11,13 +11,17 @@ import { PolicyHolderComponent } from './policy-holder/policy-holder.component';
 import { PolicyloginComponent } from './policylogin/policylogin.component';
 import { PolicyDetailsComponent } from './policy-details/policy-details.component';
 import { VehicleDetailsComponent } from './vehicle-details/vehicle-details.component';
+import { AddPolicyComponent } from './add-policy/add-policy.component';
+import { RemovePolicyComponent } from './remove-policy/remove-policy.component';
+import { CoverageDetailsComponent } from './coverage-details/coverage-details.component';
+import { InstallmentDetailsComponent } from './installment-details/installment-details.component';
 
  
 @NgModule({ 
   declarations: [ 
     AppComponent, 
     LoginComponent, 
-    RegisterComponent,PolicyHolderComponent, PolicyloginComponent, PolicyDetailsComponent, VehicleDetailsComponent,  
+    RegisterComponent,PolicyHolderComponent, PolicyloginComponent, PolicyDetailsComponent, VehicleDetailsComponent, AddPolicyComponent, RemovePolicyComponent, CoverageDetailsComponent, InstallmentDetailsComponent,
   ], 
   imports: [ 
     BrowserModule, 

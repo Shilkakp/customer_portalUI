@@ -1,0 +1,122 @@
+ .policylogin-container {
+  display: flex;
+  width: 300px;
+  margin: 0px;
+  background-color: #0a0909;
+  margin-bottom: 2px;
+ 
+}
+
+.form-group {
+  margin-bottom: 30px;
+  margin: 50px auto;
+  background-color:solid #ccc;
+  border: 4px solid #3f3f3f;
+  padding: 28px; /* Adjust as needed */
+  border-radius: 19px;  
+}
+
+.split-left {
+  float: left;
+  width: 55%;
+}
+
+.split-right {
+  float: right;
+  width: 25%;
+}
+
+.form-group label {
+  display: block;
+  width: 500px;
+
+  
+}
+
+.form-group input {
+  width: 10%;
+  padding: 20px;
+  font-size: 50px;
+    
+}
+
+.section {
+  flex: 2;
+  border: 4px solid rgb(7, 7, 7); /* Optional: Just to visualize the sections */
+}
+
+button[type="submit"],
+button[type="button"] {
+  display: block;
+  width: 10%;
+  padding: 10px;
+  font-size: 16px;
+  background-color:rgb(106, 106, 107);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.raised-button {
+  border: none;
+  border-radius: 4px;
+  background-color: #3c67f7;
+  color: rgb(253, 252, 252);
+  padding: 10px 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  margin: 4px;
+}
+
+
+:host{
+  background: #cce2ec;
+  color:#070606;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom:none; /* Adjust margin as needed */
+ 
+}
+
+.tabs {
+  font-size: 16px; /* Adjust the font size as needed */
+  padding: 60px 100px; /* Adjust the padding as needed */
+  margin: 0 10px; /* Adjust margin as needed */
+  cursor: pointer;
+  border: single;
+  background-color: #cce2ec;
+ 
+}
+.tabs.hover {
+  background-color: rgb(195, 202, 204);
+}
+.mat-tab-group {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+ 
+.mat-tab-big {
+  background-color: #044c99;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+ 
+.mat-tab-big:hover {
+  background-color: #064e96;
+}

@@ -6,34 +6,38 @@ import {  Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-    appuser={
-      UserName:'',
-      Password:'',
-    };
- 
-  constructor(private cpservice: CpService,private  route:Router) { }
+  appuser = { UserName: '', Password: '' };
+  showSuccessAlert = false;
+  showErrorAlert = false;
+  constructor(private cpservice: CpService, private route: Router) {}
  
   Register() {
-  this.route.navigate(['register']);
- }
-
+    this.route.navigate(['register']);
+  }
+ 
   onSubmit() {
-    debugger;
     this.cpservice.login(this.appuser)
-       .subscribe(
-        (response) => {
-          if(response.message=="Success"){
-           alert("Welcome"+" "+ this.appuser.UserName +",to Policy Screen")
-           this.route.navigate(['policylogin']);
-          }
-          else  if(response.message!="Success"){
-          alert(response.message)
-          }
-         }
-       );
-        }
-      }
-    
+        .subscribe(
+            (response) => {
+                if (response.message === "Success") {
+                    localStorage.setItem("userid", response.userid);
+                    this.route.navigate(['policylogin'], { state: { UserName: this.appuser } });
+                    // 
+                    setTimeout(() => {
+                      this.showSuccessAlert = true; 
+                  }, 4000);
+                    setTimeout(() => {
+                        this.showSuccessAlert = false; 
+                    }, 4000);
+                }
+            },
+            (error) => {
+                this.showErrorAlert = true;
+                
+            }
+        );
+}
+}
